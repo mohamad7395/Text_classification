@@ -28,6 +28,6 @@ eval_loader = DataLoader(tokenized["test"], batch_size=16, collate_fn=collator)
 
 # Train + evaluate
 losses = classifier.train(train_loader, eval_loader, num_epochs=2)
-classifier.save("/home/s6moakba/Text_classification/Models/IMDB")
+classifier.save("/Models/IMDB")
 
 

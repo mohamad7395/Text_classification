@@ -22,12 +22,8 @@ class TextClassifier:
         )
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
-
-        # Default optimizer/scheduler placeholders (set in train)
         self.optimizer = None
         self.lr_scheduler = None
-
-        # Metric (basic accuracy, can extend outside class)
         self.metric = evaluate.load("accuracy")
 
     def train(
@@ -77,7 +73,6 @@ class TextClassifier:
         return train_losses
 
     def evaluate(self, dataloader):
-        """Run evaluation and return accuracy"""
         self.model.eval()
         preds, labels = [], []
         for batch in dataloader:
@@ -91,7 +86,6 @@ class TextClassifier:
         return result["accuracy"]
 
     def predict(self, texts, batch_size=16):
-        """Predict labels for a list of raw texts"""
         self.model.eval()
         preds = []
         for i in range(0, len(texts), batch_size):
@@ -105,7 +99,6 @@ class TextClassifier:
         return preds
     
     def predict_dataset(self, dataset, batch_size=16, return_df=True):
-        """Predict on a Hugging Face dataset (with 'text' and 'label' fields)."""
         import pandas as pd
 
         texts, labels, preds, probs = [], [], [], []
@@ -146,7 +139,7 @@ class TextClassifier:
     @classmethod
     def load(cls, path, device=None):
         """Load model + tokenizer from disk"""
-        obj = cls.__new__(cls)  # bypass __init__
+        obj = cls.__new__(cls)  
         obj.tokenizer = AutoTokenizer.from_pretrained(path)
         obj.model = AutoModelForSequenceClassification.from_pretrained(path)
         obj.device = device or ("cuda" if torch.cuda.is_available() else "cpu")

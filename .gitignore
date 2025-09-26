@@ -8,5 +8,5 @@ Models/
 *.pt
 *.safetensors
 
-# Never track stored GitHub tokens
+# GitHub tokens
 .git-credentials

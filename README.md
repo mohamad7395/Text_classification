@@ -24,18 +24,18 @@ Instead of using a canned solution, the repo includes a minimal but flexible set
 ```
 Text_classification/
 ├── src/
-│   ├── trainer.py       # TextClassifier class (train, predict, save/load)
+│   ├── trainer.py       # TextClassifier class 
 │   ├── analysis.py      # metrics and plots
 │
 ├── scripts/
-│   ├── train.py         # training entrypoint
-│   ├── evaluate.py      # evaluation entrypoint
+│   ├── train.py         # training 
+│   ├── evaluate.py      # evaluation 
 │
 ├── notebooks/
-│   └── demo.ipynb       # lightweight demo notebook
+│   └── showcase_results.ipynb       
 │
-├── plots/               # generated figures + predictions.csv
-├── Models/              # trained checkpoints
+├── plots/               
+      
 
 
 ```

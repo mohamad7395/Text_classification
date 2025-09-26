@@ -13,13 +13,11 @@ from sklearn.metrics import (
 
 
 def print_classification_report(df, target_names=["NEGATIVE", "POSITIVE"]):
-    """Print classification metrics"""
     print("Classification Report:\n")
     print(classification_report(df["label"], df["pred"], target_names=target_names))
 
 
 def plot_confusion_matrix(df, save_path=None):
-    """Plot confusion matrix"""
     cm = confusion_matrix(df["label"], df["pred"])
     plt.figure(figsize=(5, 4))
     sns.heatmap(
@@ -42,7 +40,6 @@ def plot_confusion_matrix(df, save_path=None):
 
 
 def plot_roc_curve(df, save_path=None):
-    """Plot ROC curve with AUC"""
     fpr, tpr, _ = roc_curve(df["label"], df["prob_pos"])
     roc_auc = auc(fpr, tpr)
     plt.figure(figsize=(6, 5))
@@ -61,7 +58,6 @@ def plot_roc_curve(df, save_path=None):
 
 
 def plot_probability_histogram(df, save_path=None):
-    """Plot calibration histogram for predicted probabilities"""
     plt.figure(figsize=(6, 5))
     plt.hist(df["prob_pos"][df["label"] == 1], bins=20, alpha=0.6, label="Positive reviews")
     plt.hist(df["prob_pos"][df["label"] == 0], bins=20, alpha=0.6, label="Negative reviews")
@@ -78,7 +74,6 @@ def plot_probability_histogram(df, save_path=None):
 
 
 def show_misclassified_examples(df, n=5):
-    """Print n misclassified examples with predicted prob"""
     errors = df[df["label"] != df["pred"]]
     print(f"\n Showing {n} misclassified examples:")
     for _, row in errors.sample(min(n, len(errors))).iterrows():
